@@ -8,6 +8,9 @@ public class Bullets : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject bulletEffect;
     [SerializeField] private float bulletRange;
+    public int damageToGive = 50;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,15 +33,20 @@ public class Bullets : MonoBehaviour
         if(other.gameObject.name== "Player"){
             return;
          }
-        else
+        else if(other.tag == "Room")
+        {
+            return;
+        }else
         {
             Instantiate(bulletEffect, transform.position, transform.rotation);
+
             Destroy(gameObject);
+            AudioManager.instance.PLaySFX(4);
         }
-        if (other.gameObject.name == "Orc")
-        {
-            Destroy(other.gameObject);
+        if (other.tag == "Enemy"){
+            other.GetComponent<EnemyController>().DamageEnemy(damageToGive);
         }
+        
 
     }
     private void OnBecameInvisible()

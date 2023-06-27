@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9040285210436232266}
   - component: {fileID: 9040285210436232267}
   - component: {fileID: 9040285210436232264}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player_Bullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,3 +150,4 @@ MonoBehaviour:
   rb: {fileID: 9040285210436232267}
   bulletEffect: {fileID: 7572273459806109884, guid: c8ebfebd23c939e4aa6937aeb5b46756, type: 3}
   bulletRange: 10
+  damageToGive: 50

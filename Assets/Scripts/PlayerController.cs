@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(bullets, firePoint.position, firePoint.rotation);
             shotDelay = speedShots;
+            AudioManager.instance.PLaySFX(12);
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
             if(shotDelay <= 0)
             {
                 Instantiate(bullets, firePoint.position, firePoint.rotation);
+                AudioManager.instance.PLaySFX(12);
             }
             shotDelay = speedShots;
         }

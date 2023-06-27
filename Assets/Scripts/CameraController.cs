@@ -25,7 +25,8 @@ public class CameraController : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(target.position.x, target.position.y, transform.position.z), moveSpeed * Time.deltaTime);
         }
-        
+
+        Debug.Log(transform.position);
     }
     public void ChangeTarget(Transform newTarget)
     {

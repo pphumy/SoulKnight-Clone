@@ -27,7 +27,7 @@ public class EnemyBullets : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy" || other.tag =="Room")
         {
             return;
         }

@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Room : MonoBehaviour
+
+
 {
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +25,7 @@ public class Room : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+
             CameraController.instance.ChangeTarget(transform);
         }
     }

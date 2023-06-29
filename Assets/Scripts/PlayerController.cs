@@ -25,9 +25,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
-        MoveGunByMouse();
-        FireGun();
+        if(!UIController.instance.isPause)
+        {
+            PlayerMovement();
+            MoveGunByMouse();
+            FireGun();
+        }
+        
 
 
 

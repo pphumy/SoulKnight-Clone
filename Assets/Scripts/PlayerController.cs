@@ -17,31 +17,41 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject bullets;
     [SerializeField] private Transform firePoint;
     private float shotDelay;
+    private float baseSpeed;
+    private float rollSpeed = 10f;
+    private float rollTime = 0.5f; 
+    private float rollCooldown = 1f;
+    private float rollCounter = 1f, rollCoolCounter;
+
     void Awake()
     {
         instance = this;
     }
 
     // Update is called once per frame
+    private void Start()
+    {
+        baseSpeed = moveSpeed;
+    }
+
     void Update()
     {
         if(!UIController.instance.isPause)
         {
             PlayerMovement();
+            Rolling();
             MoveGunByMouse();
             FireGun();
+            
         }
-        
-
-
-
+        Debug.Log("speed" + baseSpeed);
     }
     void PlayerMovement()
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
         moveInput.Normalize();
-        rb.velocity = moveInput * moveSpeed;
+        rb.velocity = moveInput * baseSpeed;
         if(moveInput.x != 0)
         {
             anim.SetBool("isMoving", true);
@@ -96,6 +106,31 @@ public class PlayerController : MonoBehaviour
             shotDelay = speedShots;
         }
 
+    }
+
+    void Rolling()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(rollCoolCounter <= 0  && rollCounter <= 0){
+                baseSpeed = rollSpeed;
+                rollCounter = rollTime;
+                anim.SetTrigger("roll");
+            }
+        }
+        if(rollCounter > 0)
+        {
+            rollCounter -= Time.deltaTime;
+            if(rollCounter <= 0)
+            {
+                baseSpeed = moveSpeed;
+                rollCoolCounter = rollCooldown;
+            }
+        }
+        if(rollCoolCounter > 0)
+        {
+            rollCoolCounter -= Time.deltaTime;
+        }
     }
 
 

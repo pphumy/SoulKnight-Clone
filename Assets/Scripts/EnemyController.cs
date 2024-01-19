@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rangeAttack;
+    [SerializeField] private float rangeToStop = 4f;
     private Vector3 moveDirection;
     [SerializeField] private Animator anim;
     public int health = 100;
@@ -42,7 +43,7 @@ public class EnemyController : MonoBehaviour
 
                 moveDirection = PlayerController.instance.transform.position - transform.position;
             }
-            else
+            else if(Vector3.Distance(transform.position, PlayerController.instance.transform.position) < rangeToStop)
             {
                 moveDirection.x = 0;
                 anim.SetBool("isMoving", false);
